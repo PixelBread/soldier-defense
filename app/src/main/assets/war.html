@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sayfa başlığı</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<body><div id="task">
+    <div id="div"></div>
+   <input type="button" id="base1" value="+">
+   <br>
+        <div id="chest1">
+            <input type="button" id="money">
+            <font id="f1">0</font>
+            <input type="button" id="solder">
+            <font id="f2">0</font>
+            
+            <audio>
+            <source src="war.mp3">
+            </source>
+            </audio>
+        </div>
+    <div id="home"><a href="soldier.html"><fon>home</fon></a></div>
+        </div>    
+    <style>
+        * { font-family: sans-serif; }
+        body {
+  overflow: hidden;
+  touch-action: manipulation;
+}
+body {
+background: #bfd5ff;
+}
+#chest1 {
+background: #95a2ff;
+border: 5px black solid;
+border-radius: 10px;
+width: 150px;
+height: 100px;
+position: absolute;
+}
+    a {
+        text-decoration: none;
+    }
+#home {
+background: #95a2ff;
+border: 5px black solid;
+border-radius: 10px;
+width: 50px;
+height: 25px;
+top: 140px;
+position: absolute;
+}
+#home a  {
+      color: white;
+      font-size: 20px;
+      margin-bottom: 55px;
+      font-family: sans-serif;
+}
+#money {
+width: 30px;
+height: 30px;
+border: 7px black solid;
+border-radius: 100%;
+background: #f8ff80;
+position: absolute;
+left: 10px;
+top: 10px;
+}
+#solder {
+width: 30px;
+height: 30px;
+border: 7px black solid;
+border-radius: 100%;
+background: #9cff95;
+position: absolute;
+left: 10px;
+top: 50px;
+}
+#f1 {
+font-family: sans-serif;
+font-size: 2em;
+color: #f8ff80;
+position: absolute;
+left: 50px;
+top: 5px;
+}
+#f2 {
+font-family: sans-serif;
+font-size: 2em;
+color: #9cff95;
+position: absolute;
+left: 50px;
+top: 45px;
+}
+#base1 {
+width: 50px;
+height: 50px;
+border: 10px black solid;
+border-radius: 100%;
+color: #121212;
+font-size: 20px;
+background: #9bff6a;
+transition: 0.3s;
+position: absolute;
+left: 200px;
+top: 50px;
+}
+button {
+width: 20px;
+height: 22px;
+border: 5px black solid;
+border-radius: 100%;
+transition: 0.3s;
+position: absolute;
+}
+
+#reklam {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #242424;
+  color: #484848;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+#eneB {
+    position: absolute;
+    border: 3px #333 solid;
+    width: 330px;
+    height: 330px;
+    top: 150px;
+}
+
+
+    h1 {
+      color: #333;
+      font-size: 40px;
+    }
+    .menu-button {
+      width: 250px;
+      height: 80px;
+      font-size: 30px;
+      color: #333;
+      background-color: #66ff55;
+      border: 5px solid #333;
+      border-radius: 10px;
+      position: relative;
+
+    }
+
+
+    a {
+        text-decoration: none;
+    }
+
+#sos {background: #9bff6a;}
+#ene {background: #ff8a80;}
+#rer {background: #ff8a80;}
+    </style>
+    <script>
+let attackMode = false;
+let ss = [];
+let ee = [];
+let rr = [];
+let st = 0;
+let et = 0;
+let x = 200;
+let y = 150;
+let s1 = 0;
+let s2 = 0;
+let s3 = 0;
+let biz = 6;
+let siz = 2;
+let onlar = 3;
+let speed = 5;
+let money = 3;
+let wave = 0
+let rX = Math.floor(Math.random()*300);
+let rY = Math.floor(Math.random()*400);
+let tX = Math.floor(Math.random()*300);
+let tY = Math.floor(Math.random()*400);
+const div = document.getElementById('div');
+const task = document.getElementById('task');
+const f1 = document.getElementById('f1');
+const f2 = document.getElementById('f2');
+const bs = document.getElementById('base1');
+const body = document.querySelector('body');
+
+// Emir
+window.addEventListener('click', (event) => {
+  const isClickableUI = event.target.closest('#chest1, #money, #solder, #base1, #reklam, .menu-container, a, button');
+  
+  if (!isClickableUI) {
+    x = event.clientX;
+    y = event.clientY;
+    number = 1; // Müzik için
+  }
+});
+// Market
+bs.addEventListener('click', () => {
+if (money > 4) {money-=5;biz+=1;}
+})
+
+// Başlat
+createSos();
+createEne();
+createRer();
+
+function createSos() {
+while (s1 < biz) {
+let sos = document.createElement('button');
+sos.setAttribute('id','sos');
+div.appendChild(sos);
+sos.style.left=210+"px";
+sos.style.top=70+"px";
+ss.push(sos);
+s1+=1;
+}
+}
+function createEne() {
+while (s2 < siz) {
+let ene = document.createElement('button');
+ene.setAttribute('id','ene');
+div.appendChild(ene);
+ene.style.left=-100+"px";
+ene.style.top=500+"px";
+ee.push(ene);
+s2+=1;
+}
+rX=Math.floor(Math.random()*300)+30;
+rY=Math.floor(Math.random()*330)+150;
+}
+
+function createRer() {
+while (s3 < onlar) {
+let rer = document.createElement('button');
+rer.setAttribute('id','rer');
+div.appendChild(rer);
+rer.style.left=1500+"px";
+rer.style.top=300+"px";
+rr.push(rer);
+s3+=1;
+}
+tX=Math.floor(Math.random()*300)+30;
+tY=Math.floor(Math.random()*330)+150;
+}
+
+function move() {
+  // Hücum modu: düşmanlar sayıca bizden +5 fazlaysa aktif olur
+  attackMode = (ee.length + rr.length) > (ss.length + 5);
+
+  // Eğer hiç düşman kalmadıysa yeni seviye başlat
+  if (s2 === 0 && s3 === 0) levels();
+
+  // Bizim askerler (sos) rastgele ve komutanın gösterdiği yere yürür
+  ss.forEach(sos => {
+    let sosX = parseInt(sos.style.left);
+    let sosY = parseInt(sos.style.top);
+    let random1 = Math.floor(Math.random() * 4);
+
+    if (random1 === 0) sosX += speed;
+    if (random1 === 1) sosX -= speed;
+    if (random1 === 2) sosY += speed;
+    if (random1 === 3) sosY -= speed;
+
+    if (sosX < x - 30) sosX += speed;
+    if (sosX > x + 20) sosX -= speed;
+    if (sosY > y - 35) sosY -= speed;
+    if (sosY < y + 10) sosY += speed;
+
+    sos.style.left = sosX + "px";
+    sos.style.top = sosY + "px";
+  });
+
+  // Düşman ENE (ana düşmanlar)
+  ee.forEach(ene => {
+    let eneX = parseInt(ene.style.left);
+    let eneY = parseInt(ene.style.top);
+    let random2 = Math.floor(Math.random() * 4);
+
+    // En yakın askeri bul
+    let nearest = null;
+    let minDist = Infinity;
+
+    ss.forEach(sos => {
+      let dx = parseInt(sos.style.left) - eneX;
+      let dy = parseInt(sos.style.top) - eneY;
+      let dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < minDist) {
+        minDist = dist;
+        nearest = sos;
+      }
+    });
+
+    if (attackMode && nearest) {
+      let tx = parseInt(nearest.style.left);
+      let ty = parseInt(nearest.style.top);
+      if (eneX < tx) eneX += speed;
+      if (eneX > tx) eneX -= speed;
+      if (eneY < ty) eneY += speed;
+      if (eneY > ty) eneY -= speed;
+
+      if (random2 === 0) eneX += speed;
+      if (random2 === 1) eneX -= speed;
+      if (random2 === 2) eneY += speed;
+      if (random2 === 3) eneY -= speed;
+    } else {
+      // Normal kamp hareketi
+      if (eneX > rX - 20) eneX -= speed;
+      if (eneX < rX + 15) eneX += speed;
+      if (eneY > rY + 10) eneY -= speed;
+      if (eneY < rY - 30) eneY += speed;
+
+      if (random2 === 0) eneX += speed;
+      if (random2 === 1) eneX -= speed;
+      if (random2 === 2) eneY += speed;
+      if (random2 === 3) eneY -= speed;
+    }
+
+    ene.style.left = eneX + "px";
+    ene.style.top = eneY + "px";
+  });
+
+  // Düşman RER (yardımcı düşmanlar)
+  rr.forEach(rer => {
+    let rerX = parseInt(rer.style.left);
+    let rerY = parseInt(rer.style.top);
+    let random3 = Math.floor(Math.random() * 4);
+
+    let nearest = null;
+    let minDist = Infinity;
+
+    ss.forEach(sos => {
+      let dx = parseInt(sos.style.left) - rerX;
+      let dy = parseInt(sos.style.top) - rerY;
+      let dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < minDist) {
+        minDist = dist;
+        nearest = sos;
+      }
+    });
+
+    if (attackMode && nearest) {
+      let tx = parseInt(nearest.style.left);
+      let ty = parseInt(nearest.style.top);
+      if (rerX < tx) rerX += speed;
+      if (rerX > tx) rerX -= speed;
+      if (rerY < ty) rerY += speed;
+      if (rerY > ty) rerY -= speed;
+
+      if (random3 === 0) rerX += speed;
+      if (random3 === 1) rerX -= speed;
+      if (random3 === 2) rerY += speed;
+      if (random3 === 3) rerY -= speed;
+    } else {
+      if (rerX > tX - 20) rerX -= speed;
+      if (rerX < tX + 15) rerX += speed;
+      if (rerY > tY + 10) rerY -= speed;
+      if (rerY < tY - 30) rerY += speed;
+
+      if (random3 === 0) rerX += speed;
+      if (random3 === 1) rerX -= speed;
+      if (random3 === 2) rerY += speed;
+      if (random3 === 3) rerY -= speed;
+    }
+
+    rer.style.left = rerX + "px";
+    rer.style.top = rerY + "px";
+  });
+
+  // Savaş kontrolü
+  ss.forEach(sos => {
+    let sosX = parseInt(sos.style.left);
+    let sosY = parseInt(sos.style.top);
+
+    ee.forEach(ene => {
+      let eneX = parseInt(ene.style.left);
+      let eneY = parseInt(ene.style.top);
+      if (sosX === eneX && sosY === eneY) {
+        let war = Math.floor(Math.random() * 3);
+        if (war === 0) {
+          sos.remove();
+          ss.splice(ss.indexOf(sos), 1);
+          s1 -= 1; biz -= 1;
+        } else {
+          ene.remove();
+          ee.splice(ee.indexOf(ene), 1);
+          s2 -= 1; money += 3;
+        }
+      }
+    });
+
+    rr.forEach(rer => {
+      let rerX = parseInt(rer.style.left);
+      let rerY = parseInt(rer.style.top);
+      if (sosX === rerX && sosY === rerY) {
+        let war = Math.floor(Math.random() * 3);
+        if (war === 0) {
+          sos.remove();
+          ss.splice(ss.indexOf(sos), 1);
+          s1 -= 1; biz -= 1;
+        } else {
+          rer.remove();
+          rr.splice(rr.indexOf(rer), 1);
+          s3 -= 1; money += 3;
+        }
+      }
+    });
+  });
+
+  // Arayüz güncelleme
+  f2.innerHTML = s1 + '/' + biz;
+  f1.innerHTML = money;
+
+  if (s1 < 1) {
+    task.innerHTML = '<center><h1>Defeat!<br>You survived:'+wave+'</h1><a href="soldier.html"><button class="menu-button">Go menu</button></a></center>';
+  }
+  if (wave > 10000) {
+    body.innerHTML = ":)";
+  }
+}
+function levels() {
+createSos();
+createEne();
+createRer();
+money+=1;
+wave+=1;siz+=2;onlar+=2;
+}
+
+// Müzik
+var number = 0;
+const bus = document.querySelector("audio");        
+setInterval(w => {
+if(number == 1) {
+bus.play();
+}
+},1000);
+setInterval(levels,60000);
+setInterval(move,200);
+    </script>
+
+</body>
+</html>
